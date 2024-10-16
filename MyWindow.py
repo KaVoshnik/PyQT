@@ -12,8 +12,8 @@ class MyWindow(QtWidgets.QWidget):
 
         self.timer_label = QtWidgets.QLabel("Timer:")
         self.timer_input = QtWidgets.QSpinBox()
-        self.timer_input.setRange(1, 3600)  # 1-3600 seconds
-
+        self.timer_input.setRange(1, 3600)
+        
         self.start_button = QtWidgets.QPushButton("Start")
         self.start_button.clicked.connect(self.start_timer)
 
@@ -38,20 +38,20 @@ class MyWindow(QtWidgets.QWidget):
 
         self.update_timer = QTimer()
         self.update_timer.timeout.connect(self.update_time)
-        self.update_timer.start(1000)  # update every 1 second
+        self.update_timer.start(1000)
 
         self.remaining_time = 0
 
     def start_timer(self):
         self.remaining_time = self.timer_input.value()
-        self.timer.start(1000)  # update every 1 second
+        self.timer.start(1000)
 
     def timer_timeout(self):
         self.remaining_time -= 1
         self.remaining_time_label.setText(f"Remaining time: {self.remaining_time} seconds")
         if self.remaining_time <= 0:
             self.timer.stop()
-            QMessageBox.information(self, "Timer", "Time's up!")
+            QMessageBox.information(self, "Timer", "cool time nigga")
 
     def update_time(self):
         current_time = QTime.currentTime().toString("hh:mm:ss")
