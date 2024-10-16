@@ -12,7 +12,7 @@ class MyWindow(QtWidgets.QWidget):
 
         self.timer_label = QtWidgets.QLabel("Timer:")
         self.timer_input = QtWidgets.QSpinBox()
-        self.timer_input.setRange(1, 3600)
+        self.timer_input.setRange(1, 3600)  # 1-3600 seconds
 
         self.start_button = QtWidgets.QPushButton("Start")
         self.start_button.clicked.connect(self.start_timer)
@@ -20,12 +20,16 @@ class MyWindow(QtWidgets.QWidget):
         self.remaining_time_label = QtWidgets.QLabel("Remaining time: ")
         self.remaining_time_label.setAlignment(QtCore.Qt.AlignCenter)
 
+        self.close_button = QtWidgets.QPushButton("Close")
+        self.close_button.clicked.connect(self.close)
+
         self.layout = QtWidgets.QVBoxLayout()
         self.layout.addWidget(self.time_label)
         self.layout.addWidget(self.timer_label)
         self.layout.addWidget(self.timer_input)
         self.layout.addWidget(self.start_button)
         self.layout.addWidget(self.remaining_time_label)
+        self.layout.addWidget(self.close_button)
 
         self.setLayout(self.layout)
 
@@ -52,6 +56,11 @@ class MyWindow(QtWidgets.QWidget):
     def update_time(self):
         current_time = QTime.currentTime().toString("hh:mm:ss")
         self.time_label.setText(current_time)
+
+    def close(self):
+        self.update_timer.stop()
+        self.timer.stop()
+        self.close()
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
