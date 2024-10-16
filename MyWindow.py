@@ -4,7 +4,7 @@ from PyQt5.QtCore import QTime, QTimer
 from PyQt5.QtWidgets import QMessageBox
 
 class MyWindow(QtWidgets.QWidget):
-    def __init__(self):
+    def __init__(self):     # функция инициализации
         super().__init__()
 
         self.time_label = QtWidgets.QLabel()
@@ -13,7 +13,7 @@ class MyWindow(QtWidgets.QWidget):
         self.timer_label = QtWidgets.QLabel("Timer:")
         self.timer_input = QtWidgets.QSpinBox()
         self.timer_input.setRange(1, 3600)
-        
+
         self.start_button = QtWidgets.QPushButton("Start")
         self.start_button.clicked.connect(self.start_timer)
 
@@ -44,23 +44,23 @@ class MyWindow(QtWidgets.QWidget):
 
     def start_timer(self):
         self.remaining_time = self.timer_input.value()
-        self.timer.start(1000)
+        self.timer.start(1000)  # функци старта таймера
 
     def timer_timeout(self):
         self.remaining_time -= 1
         self.remaining_time_label.setText(f"Remaining time: {self.remaining_time} seconds")
         if self.remaining_time <= 0:
             self.timer.stop()
-            QMessageBox.information(self, "Timer", "cool time nigga")
+            QMessageBox.information(self, "Timer", "cool time nigga")   # функция при окончании таймера
 
     def update_time(self):
         current_time = QTime.currentTime().toString("hh:mm:ss")
-        self.time_label.setText(current_time)
+        self.time_label.setText(current_time)   # функция обновления времени
 
     def close(self):
         self.update_timer.stop()
         self.timer.stop()
-        self.close()
+        self.close()    # закрытие приложения и остановка функций
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
