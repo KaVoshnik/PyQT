@@ -4,7 +4,7 @@ from PyQt5.QtCore import QTime, QTimer
 from PyQt5.QtWidgets import QMessageBox
 
 class MyWindow(QtWidgets.QWidget):
-    def __init__(self):     # функция инициализации
+    def __init__(self):
         super().__init__()
 
         self.time_label = QtWidgets.QLabel()
@@ -44,28 +44,28 @@ class MyWindow(QtWidgets.QWidget):
 
     def start_timer(self):
         self.remaining_time = self.timer_input.value()
-        self.timer.start(1000)  # функци старта таймера
+        self.timer.start(1000)
 
     def timer_timeout(self):
         self.remaining_time -= 1
         self.remaining_time_label.setText(f"Remaining time: {self.remaining_time} seconds")
         if self.remaining_time <= 0:
             self.timer.stop()
-            QMessageBox.information(self, "Timer", "cool time nigga")   # функция при окончании таймера
+            QMessageBox.information(self, "Timer", "cool time nigga")
 
     def update_time(self):
         current_time = QTime.currentTime().toString("hh:mm:ss")
-        self.time_label.setText(current_time)   # функция обновления времени
+        self.time_label.setText(current_time)
 
     def close(self):
         self.update_timer.stop()
         self.timer.stop()
-        self.close()    # закрытие приложения и остановка функций
+        self.close()
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     window = MyWindow()
-    window.setWindowTitle("Current Time")
+    window.setWindowTitle("Current Time") 
     window.resize(300, 250)
     window.show()
     sys.exit(app.exec_())
