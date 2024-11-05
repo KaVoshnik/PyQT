@@ -154,6 +154,9 @@ In other words, return true if one of s1's permutations is the substring of s2.
             print("Video not found")
             QMessageBox.information(self, "Error", "Video not found")
 
+    def browse_media(self):
+        
+
     def stop_video(self):
         self.media_player.stop()
 
